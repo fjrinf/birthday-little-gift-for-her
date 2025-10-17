@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>hi sayang ♡</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🎂</text></svg>">
+  <style>
+    :root{
+      --bg:#0f0f14;
+      --card:#141824;
+      --muted:#9aa4b2;
+      --text:#e6e9ef;
+      --accent:#ff63a2;
+      --accent-2:#7cf6d3;
+      --ok:#7dfb7a;
+      --err:#ff8a8a;
+      --radius:22px;
+      --shadow:0 10px 30px rgba(0,0,0,.4), inset 0 0 0 1px rgba(255,255,255,.05);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;background:radial-gradient(1200px 800px at 20% -10%, #23263a 0%, transparent 60%), radial-gradient(1200px 800px at 120% 110%, #1b1f2b 0%, transparent 60%), var(--bg);color:var(--text);font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";}
+
+    .wrap{min-height:100%;display:grid;place-items:center;padding:28px}
+
+    .card{width:min(680px, 100%);background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+      border-radius:var(--radius);box-shadow:var(--shadow);position:relative;overflow:hidden}
+    .card::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:conic-gradient(from 180deg at 50% 50%, #ffffff20, #ffffff03, #ffffff10, #ffffff02, #ffffff20);-webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);-webkit-mask-composite: xor;mask-composite: exclude;pointer-events:none}
+
+    header{padding:26px 26px 12px 26px}
+    .title{font-weight:700;font-size:28px;letter-spacing:.3px}
+    .subtitle{color:var(--muted);margin-top:4px}
+
+    .content{padding:12px 26px 26px 26px}
+    .row{display:flex;gap:12px;flex-wrap:wrap}
+    .field{flex:1 1 120px}
+    label{display:block;font-size:12px;color:var(--muted);margin:0 0 6px 8px}
+    input[type="number"]{width:100%;padding:14px 16px;border-radius:16px;border:none;background:#0f1320;color:var(--text);box-shadow:inset 0 0 0 1px #ffffff15;outline:none;transition:box-shadow .2s, transform .1s}
+    input[type="number"]:focus{box-shadow:0 0 0 3px #7cf6d340, inset 0 0 0 1px #7cf6d380}
+
+    button{appearance:none;border:none;background:linear-gradient(180deg, #ff63a2, #ff4f8f);color:#fff;padding:14px 18px;border-radius:16px;font-weight:700;letter-spacing:.3px;cursor:pointer;box-shadow:0 10px 20px rgba(255,99,162,.25);transition:transform .08s ease, filter .15s ease}
+    button:hover{filter:brightness(1.05)}
+    button:active{transform:translateY(1px)}
+
+    .hint{margin-top:10px;color:var(--muted);font-size:12px}
+    .note{margin-top:14px;color:#ffd1dc}
+    .err{color:var(--err)}
+    .ok{color:var(--ok)}
+
+    .footer{display:flex;align-items:center;gap:10px;justify-content:space-between;margin-top:18px;color:var(--muted);font-size:12px}
+
+    .reveal{display:none;}
+    .show .gate{display:none}
+    .show .reveal{display:block}
+
+    .hero{padding:34px 26px 10px 26px}
+    .hero h1{margin:0;font-weight:800;font-size:32px}
+    .hero p{color:var(--muted);margin:6px 0 0}
+
+    .letter{padding:0 26px 26px 26px}
+    .bubble{background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));border-radius:18px;padding:20px 18px;line-height:1.7;box-shadow:var(--shadow);position:relative;overflow:hidden}
+    .bubble::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)}
+
+    .type{white-space:pre-wrap}
+
+    .actions{display:flex;gap:10px;margin-top:16px}
+    .ghost{background:#0f1320}
+
+    .hearts{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+    .heart{position:absolute;width:14px;height:14px;background:var(--accent);transform:rotate(45deg);opacity:.7;animation:float 7s linear infinite}
+    .heart::before,.heart::after{content:"";position:absolute;width:14px;height:14px;background:var(--accent);border-radius:50%}
+    .heart::before{left:-7px}
+    .heart::after{top:-7px}
+    @keyframes float{0%{transform:translateY(0) rotate(45deg)}100%{transform:translateY(-120vh) rotate(45deg)}}
+
+    .small{font-size:12px;color:var(--muted)}
+    .sep{opacity:.3;margin:0 8px}
+
+    @media (max-width:420px){
+      .title{font-size:24px}
+      .hero h1{font-size:28px}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div id="app" class="card">
+      <section class="gate">
+        <header>
+          <div class="title">hai sayang, jawab ini dulu ya ♡</div>
+          <div class="subtitle">kita jadian tanggal berapa yaa? (isi tiga kolom di bawah)</div>
+        </header>
+        <div class="content">
+          <div class="row">
+            <div class="field">
+              <label>tanggal</label>
+              <input inputmode="numeric" id="d" type="number" placeholder="dd" min="1" max="31" />
+            </div>
+            <div class="field">
+              <label>bulan</label>
+              <input inputmode="numeric" id="m" type="number" placeholder="mm" min="1" max="12" />
+            </div>
+            <div class="field">
+              <label>tahun</label>
+              <input inputmode="numeric" id="y" type="number" placeholder="yyyy" min="1900" max="2100" />
+            </div>
+          </div>
+
+          <div class="actions" style="margin-top:16px">
+            <button type="button" id="check">cek jawaban</button>
+            <button type="button" class="ghost" id="hintBtn" title="kasih clue dikit dong">minta hint</button>
+          </div>
+
+          <div class="hint" id="hint"></div>
+          <div class="note small">gamungkin lupa kannn, kecewa bgt kalo dilupain sii, hehe</div>
+
+          <div class="footer">
+            <div><span class="small">made with <span aria-label="love">💗</span> khusus buat kamu</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="reveal">
+        <div class="hearts" id="hearts"></div>
+        <div class="hero">
+          <h1>happy birthday, sayang !!!</h1>
+          <p>kamu berhasil jawab, hehe. berarti kamu emang beneran jodohnya aku. mmmua</p>
+        </div>
+        <div class="letter">
+          <div class="bubble">
+            <div id="msg" class="type"></div>
+          </div>
+          <div class="actions">
+            <button type="button" id="showAll" class="ghost">tampilkan semua</button>
+            <button type="button" id="copy">salin isi</button>
+          </div>
+          <p class="small" style="margin-top:10px">psst… <a id="reset" href="#">klik sini untuk reset dan isi ulang</a></p>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    const ANSWER = { d: 10, m: 8, y: 2019 };
+
+    const MESSAGE_HTML = `hari ini bukan tentang kue atau lilin sayangkuuu, tapi tentang kamu.
+
+aku pengen kamu tau: aku milih kamu tiap hari. bahkan di hari hari yang berantakan, di jam jam yang sepi, di tengah jarak ldr dan ribut ribut kecil yang kadang bikin kita capek. kita jatuh bangun, tapi kita juga selalu pulang. ke panggilan yang sama, ke obrolan yang gak pernah selesai, ke pelukan yang bikin napas tenang lagi.
+
+aku sayang kamu bukan cuma karena kamu baik, lucu, atau kuat. aku sayang kamu karena kamu nyata. yang kadang tumpah, kadang ragu, kadang keras kepala—tapi selalu berusaha. dan di situ aku belajar... cinta itu bukan tentang sempurna, tapi tentang mau sama sama benerin, pelan pelan.
+
+aku pengen jadi tempat kamu balik, tempat kamu cerita, tempat kamu istirahat. kalau nanti ada hari yang berat, pegang tangan aku ya. kita gak perlu ngebut. jalan pelan juga gapapa, yang penting bareng.
+
+makasih udah bikin aku berani tumbuh. makasih udah bikin aku percaya diri lagi. makasih udah milih aku, bahkan waktu aku susah dicintai.
+
+aku sayang kamu, banget banget dan banget. selalu kamu.`;
+
+    const HINTS = [
+      "Tanggalnya dua digit, bulannya juga dua digit.",
+      "Bulan kita jadiannya di pertengahan tahun, pas musim kemarau 😉",
+      "Angkanya kecil dan genap untuk tanggalnya.",
+      "Angka tahunnya mendekati 2020, tapi belum.",
+    ];
+
+    const app = document.getElementById('app');
+    const inputs = { d: document.getElementById('d'), m: document.getElementById('m'), y: document.getElementById('y') };
+    const hint = document.getElementById('hint');
+    const hintBtn = document.getElementById('hintBtn');
+    const checkBtn = document.getElementById('check');
+
+    const msgEl = document.getElementById('msg');
+    const showAllBtn = document.getElementById('showAll');
+    const copyBtn = document.getElementById('copy');
+    const resetLink = document.getElementById('reset');
+
+    const hearts = document.getElementById('hearts');
+
+    function setMode(show){
+      if(show){ 
+        app.classList.add('show'); 
+        spawnHearts(); 
+        typeWrite(MESSAGE_HTML, msgEl); 
+      }
+      else{ 
+        app.classList.remove('show'); 
+        msgEl.textContent = ''; 
+        hearts.innerHTML = '';
+      }
+    }
+
+    function isCorrect(){
+      const d = Number(inputs.d.value);
+      const m = Number(inputs.m.value);
+      const y = Number(inputs.y.value);
+      return d === ANSWER.d && m === ANSWER.m && y === ANSWER.y;
+    }
+
+    let typing = null;
+    function typeWrite(text, el){
+      if(typing){ clearInterval(typing); typing = null }
+      el.textContent = '';
+      let i = 0;
+      const speed = 22;
+      typing = setInterval(()=>{
+        el.textContent = text.slice(0, i++);
+        if(i > text.length){ clearInterval(typing); typing = null }
+      }, speed);
+    }
+
+    showAllBtn.addEventListener('click', ()=>{
+      if(typing){ clearInterval(typing); typing = null }
+      msgEl.textContent = MESSAGE_HTML;
+    });
+
+    copyBtn.addEventListener('click', async ()=>{
+      try{
+        await navigator.clipboard.writeText(MESSAGE_HTML);
+        copyBtn.textContent = 'tersalin ✓';
+        setTimeout(()=> copyBtn.textContent = 'salin isi', 1200);
+      }catch{ 
+        alert('gagal menyalin :(');
+      }
+    });
+
+    resetLink.addEventListener('click', (e)=>{
+      e.preventDefault();
+      setMode(false);
+      inputs.d.value = inputs.m.value = inputs.y.value = '';
+      hint.textContent = '';
+    });
+
+    function spawnHearts(){
+      hearts.innerHTML = '';
+      const count = 40;
+      for(let i=0;i<count;i++){
+        const h = document.createElement('div');
+        h.className = 'heart';
+        h.style.left = Math.random()*100 + 'vw';
+        h.style.bottom = - (Math.random()*40 + 10) + 'px';
+        h.style.animationDelay = (Math.random()*5) + 's';
+        h.style.opacity = (Math.random()*.5 + .3).toFixed(2);
+        h.style.background = Math.random() > .5 ? 'var(--accent)' : 'var(--accent-2)';
+        const size = (Math.random()*12 + 8) + 'px';
+        h.style.width = h.style.height = size;
+        hearts.appendChild(h);
+      }
+    }
+
+    checkBtn.addEventListener('click', ()=>{
+      hint.textContent = '';
+      if(isCorrect()){
+        setMode(true);
+      }else{
+        hint.innerHTML = '<span class="err">hmm.. belum tepat. coba lagi yaa 🥺</span>';
+      }
+    });
+
+    let hintIndex = -1;
+    hintBtn.addEventListener('click', ()=>{
+      hintIndex = (hintIndex + 1) % HINTS.length;
+      hint.innerHTML = 'hint: ' + HINTS[hintIndex];
+    });
+  </script>
+</body>
+</html>
